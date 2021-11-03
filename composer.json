@@ -1,0 +1,19 @@
+{
+    "name": "mpusher/gm-open-sdk-php",
+    "description": "gm-open-sdk-php",
+    "keywords": [
+      "guomian",
+      "gm-sdk"
+    ],
+    "homepage": "https://github.com/GMOpen/gm-open-sdk-php",
+    "authors": [
+      {
+        "name": "guomian",
+        "email": "zhangke@xiudtech.com"
+      }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.4",
+        "phpseclib/phpseclib": "^3.0"
+    }
+}
