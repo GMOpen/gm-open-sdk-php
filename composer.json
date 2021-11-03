@@ -16,5 +16,10 @@
         "guzzlehttp/guzzle": "^7.4",
         "phpseclib/phpseclib": "^3.0"
     },
+    "autoload": {
+      "psr-4": {
+          "GM\\": "src/"
+      }
+  },
     "minimum-stability": "dev"
 }
