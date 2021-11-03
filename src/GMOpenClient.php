@@ -59,7 +59,6 @@ class GMOpenClient
     {
         $param = $this->buildRequestParam($param);
         $sign = $this->sign($param);
-        //echo $sign;exit;
         $options = [
             'headers' => [
                 'Content-Type'  => 'application/json;charset=utf-8',
