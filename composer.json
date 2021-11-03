@@ -15,5 +15,6 @@
     "require": {
         "guzzlehttp/guzzle": "^7.4",
         "phpseclib/phpseclib": "^3.0"
-    }
+    },
+    "minimum-stability": "dev"
 }
