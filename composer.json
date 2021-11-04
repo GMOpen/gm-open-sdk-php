@@ -1,5 +1,6 @@
 {
     "name": "mpusher/gm-open-sdk-php",
+    "type": "library",
     "description": "gm-open-sdk-php",
     "keywords": [
       "guomian",
