@@ -44,7 +44,6 @@ class HttpClient
         return (string)$response->getBody();
     }
 
-
     /**
      * 同步post 请求
      * @param string $url
