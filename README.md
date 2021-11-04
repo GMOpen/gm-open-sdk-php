@@ -5,6 +5,9 @@ composer require mpusher/gm-open-sdk-php
 ```
 ## 使用
 ```php
+use GM\GMOpenClient;
+use GM\config\OpenApiConfig;
+
 #merchatId 商户id
 #signId 签名对应id
 #publicKey 公钥
