@@ -81,7 +81,7 @@ class GMOpenClient
      *
      * @return void
      */
-    protected function buildRequestParam(&$param): string
+    protected function buildRequestParam($param): string
     {
         $commonParam = [
             'merchId' => $this->config->getMerchId(),
