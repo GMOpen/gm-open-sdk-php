@@ -1,7 +1,7 @@
 # gm-open-sdk-php
 ## 安装
 ```php
-composer require mpusher/gm-open-sdk-php
+composer require gmopen/gm-open-sdk-php
 ```
 ## 使用
 ```php
