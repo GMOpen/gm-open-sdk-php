@@ -6,6 +6,7 @@
       "gm-sdk"
     ],
     "homepage": "https://github.com/GMOpen/gm-open-sdk-php",
+    "license": "MIT",
     "authors": [
       {
         "name": "guomian",
