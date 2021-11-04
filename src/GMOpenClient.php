@@ -11,6 +11,8 @@ use GM\traits\Singleton;
 use GM\exceptions\RSAKeyException;
 use GM\exceptions\RequestException;
 use phpseclib3\Crypt\RSA;
+use phpseclib3\Crypt\RSA\PrivateKey;
+use phpseclib3\Crypt\RSA\PublicKey;
 
 class GMOpenClient
 {
@@ -31,6 +33,20 @@ class GMOpenClient
     private $config;
 
     /**
+     * privatekey
+     *
+     * @var PrivateKey
+     */
+    private $privateKey;
+
+    /**
+     * publicKey
+     *
+     * @var PublicKey
+     */
+    private $publicKey;
+
+    /**
      * 环境域名
      *
      * @var array
@@ -45,6 +61,7 @@ class GMOpenClient
         $this->config = $config;
         $baseUri = $this->modDomain[$this->config->getMod()];
         $this->httpClient = HttpClient::instance($baseUri);
+        $this->initKeys();
     }
 
     /**
@@ -102,17 +119,31 @@ class GMOpenClient
      */
     private function sign(string $content)
     {
-        $private = RSA::loadPrivateKey($this->config->getPrivateKey())->withPadding(RSA::SIGNATURE_RELAXED_PKCS1);
-        $sign = base64_encode($private->sign($content));
+        $sign = base64_encode($this->privateKey->sign($content));
         $sign = str_replace(PHP_EOL, "", $sign);
 
-        if (!$this->config->getPublicKey()) {
-            $public = RSA::loadPublicKey($this->config->getPublicKey())->withPadding(RSA::SIGNATURE_RELAXED_PKCS1);
-            if (!$public->verify($content, base64_decode($sign))) {
+        if (!empty($this->publicKey)) {
+            if (!$this->publicKey->verify($content, base64_decode($sign))) {
                 throw new RSAKeyException('sign 自检失败！');
             }
         }
         
         return $sign;
+    }
+
+    /**
+     * 初始化公私钥
+     *
+     * @return void
+     */
+    private function initKeys()
+    {
+        if (!empty($this->config->getPublicKey())) {
+            $this->publicKey = RSA::loadPublicKey($this->config->getPublicKey())->withPadding(RSA::SIGNATURE_RELAXED_PKCS1);
+        }
+
+        if (!empty($this->config->getPrivateKey())) {
+            $this->privateKey = RSA::loadPrivateKey($this->config->getPrivateKey())->withPadding(RSA::SIGNATURE_RELAXED_PKCS1);
+        }
     }
 }
